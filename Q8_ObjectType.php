@@ -11,6 +11,6 @@
 
 	$message = new greeting;
     	var_dump($message);
-	echo "<br><br>". $message->show_greeting(). "Kamal Mittal<br>";
+	echo "<br><br>". $message->show_greeting(). "Hello Ji<br>";
 	echo "<br>This code is executed by Kamal Mittal!";
 ?>
