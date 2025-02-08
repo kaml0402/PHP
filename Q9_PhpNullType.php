@@ -3,7 +3,7 @@
 	echo "A -> ";
 	var_dump($a);
 	
-	$b = "Kamal";
+	$b = "Hello";
 	echo "<br>B -> ";
 	var_dump($b);
 	$b = NULL;
