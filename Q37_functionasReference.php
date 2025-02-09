@@ -10,5 +10,6 @@
     echo $mynum . "\n";      
     selfMultiply($mynum);
     echo $mynum; 
+    echo"\n";
     echo"<br>This code is executed by Kamal Mittal!";
 ?>
