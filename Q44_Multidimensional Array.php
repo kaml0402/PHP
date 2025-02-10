@@ -28,6 +28,6 @@
          
          echo "Marks for Zara in chemistry : " ;
          echo $marks['zara']['chemistry'] . "<br>";
-	 echo"<br>This code is executed by Kamal Mittal!; 
+	 echo"This code is executed by Kamal Mittal!"; 
          
 ?>
