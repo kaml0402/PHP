@@ -1,6 +1,6 @@
 <?php
 
-    echo str_replace("world", "Dolly", "Hello world!");
+    echo str_replace("world", "Kamal", "Hello world!");
     echo"<br>This code is executed by Kamal Mittal!";
 
 ?>
