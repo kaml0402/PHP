@@ -17,7 +17,7 @@ echo "Local Time (Array Format): " . print_r($localTime, true) . "<br>";
 // 5. strtotime(): Converts a human-readable date string into a timestamp
 $futureDate = "2025-12-31";
 $futureTimestamp = strtotime($futureDate);
-echo "Unix timestamp for $futureDate: " . $futureTimestamp . "<be>";
+echo "Unix timestamp for $futureDate: " . $futureTimestamp . "<br>";
 
 echo "This code is executed by Kamal Mittal!";
 ?>
