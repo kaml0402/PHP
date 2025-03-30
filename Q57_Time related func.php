@@ -12,7 +12,12 @@ echo "Unix timestamp for 17th March 2025: " . $customTimestamp . "<br>";
 
 // 4. localtime(): Returns an array with local time information
 $localTime = localtime(time(), true);
-echo "Local Time (Array Format): " . print_r($localTime, true) . "<br>";
+echo "Local Hour: " . $localTime['tm_hour'] . "<br>";
+echo "Local Minute: " . $localTime['tm_min'] . "<br>";
+echo "Local Second: " . $localTime['tm_sec'] . "<br>";
+echo "Local Day: " . $localTime['tm_mday'] . "<br>";
+echo "Local Month: " . ($localTime['tm_mon'] + 1) . "<br>"; // Months are zero-based
+echo "Local Year: " . ($localTime['tm_year'] + 1900) . "<br>";
 
 // 5. strtotime(): Converts a human-readable date string into a timestamp
 $futureDate = "2025-12-31";
