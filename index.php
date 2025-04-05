@@ -85,7 +85,7 @@
 <?php
 if (isset($_GET['file']) && file_exists($_GET['file'])) {
     $filename = $_GET['file'];
-    echo "<div class='split-view'>";
+    echo "<div class='split-view' id='output-section'>";
     echo "<div class='panel'><h2>Code: $filename</h2><pre>" . htmlspecialchars(file_get_contents($filename)) . "</pre></div>";
     echo "<div class='panel'><h2>Output:</h2>";
     include($filename);
@@ -97,5 +97,7 @@ if (isset($_GET['file']) && file_exists($_GET['file'])) {
     Made with ❤️ by Kamal Mittal
 </footer>
 
-</body>
-</html>
+<?php if (isset($_GET['file'])): ?>
+<script>
+    // Scroll to output section
+    document.getElementById("output
