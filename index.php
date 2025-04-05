@@ -94,7 +94,7 @@ if (isset($_GET['file']) && file_exists($_GET['file'])) {
 ?>
 
 <footer>
-    Made with ❤️ by Kamal Mittal
+    Made with ❤️ by Kamal Mittal | <a href="https://github.com/kaml0402" target="_blank">My GitHub</a>
 </footer>
 
 <?php if (isset($_GET['file'])): ?>
