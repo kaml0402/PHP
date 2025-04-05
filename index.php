@@ -16,7 +16,8 @@
         table {
             margin: 0 auto 30px auto;
             border-collapse: collapse;
-            width: 80%;
+            width: 90%;
+            max-width: 1000px;
             background: white;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
@@ -52,11 +53,24 @@
             background: #eee;
             padding: 10px;
             overflow-x: auto;
+            max-height: 500px;
         }
         footer {
-            margin-top: 40px;
-            color: gray;
+            margin-top: 60px;
             font-size: 14px;
+            color: #777;
+        }
+        footer a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        footer a:hover {
+            color: #0056b3;
+        }
+        @media (max-width: 768px) {
+            .panel {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -94,12 +108,13 @@ if (isset($_GET['file']) && file_exists($_GET['file'])) {
 ?>
 
 <footer>
-    Made with ❤️ by Kamal Mittal | <a href="https://github.com/kaml0402" target="_blank">My GitHub</a>
+    Made with ❤️ by Kamal Mittal | 
+    <a href="https://github.com/kaml0402" target="_blank">My GitHub</a>
 </footer>
 
 <?php if (isset($_GET['file'])): ?>
 <script>
-    // Scroll to output section
+    // Auto-scroll to output section
     document.getElementById("output-section").scrollIntoView({ behavior: "smooth" });
 </script>
 <?php endif; ?>
