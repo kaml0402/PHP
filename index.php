@@ -4,59 +4,36 @@
     <meta charset="UTF-8">
     <title>Kamal's PHP Practice</title>
     <style>
-        :root {
-            --bg: #f0f0f0;
-            --text: #333;
-            --panel-bg: white;
-            --link: #007BFF;
-            --link-hover: #0056b3;
-        }
-
-        body.dark {
-            --bg: #1e1e1e;
-            --text: #eee;
-            --panel-bg: #2c2c2c;
-            --link: #66aaff;
-            --link-hover: #3399ff;
-        }
-
         body {
             font-family: Arial, sans-serif;
-            background: var(--bg);
-            color: var(--text);
+            background: #f0f0f0;
             padding: 40px;
             text-align: center;
             transition: background 0.3s, color 0.3s;
         }
-
         h1 {
-            color: var(--text);
+            color: #333;
         }
-
         table {
             margin: 0 auto 30px auto;
             border-collapse: collapse;
             width: 80%;
-            background: var(--panel-bg);
+            background: white;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
-
         th, td {
             padding: 12px 20px;
             border-bottom: 1px solid #ddd;
             text-align: left;
         }
-
         a {
             text-decoration: none;
-            color: var(--link);
+            color: #007BFF;
             transition: 0.3s;
         }
-
         a:hover {
-            color: var(--link-hover);
+            color: #0056b3;
         }
-
         .split-view {
             display: flex;
             justify-content: center;
@@ -64,50 +41,64 @@
             margin-top: 30px;
             flex-wrap: wrap;
         }
-
         .panel {
-            background: var(--panel-bg);
+            background: white;
             border-radius: 8px;
             padding: 20px;
             width: 45%;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             text-align: left;
         }
-
         pre {
             background: #eee;
             padding: 10px;
             overflow-x: auto;
         }
-
-        .dark pre {
-            background: #333;
-            color: #eee;
-        }
-
         footer {
             margin-top: 40px;
             color: gray;
             font-size: 14px;
         }
-
-        .toggle-btn {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            padding: 8px 14px;
-            background: var(--panel-bg);
-            color: var(--text);
+        #toggle-mode {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            background: #007BFF;
+            color: white;
             border: none;
-            border-radius: 20px;
+            padding: 10px 14px;
+            border-radius: 8px;
             cursor: pointer;
-            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+        #toggle-mode:hover {
+            background: #0056b3;
+        }
+
+        /* Dark Mode */
+        body.dark {
+            background: #121212;
+            color: #f0f0f0;
+        }
+        body.dark table,
+        body.dark .panel {
+            background: #1e1e1e;
+            color: #f0f0f0;
+        }
+        body.dark pre {
+            background: #2a2a2a;
+        }
+        body.dark a {
+            color: #66B2FF;
+        }
+        body.dark a:hover {
+            color: #99ccff;
         }
     </style>
 </head>
 <body>
 
-<button class="toggle-btn" onclick="toggleMode()">🌗 Toggle Dark Mode</button>
+<button id="toggle-mode">🌗 Toggle Dark Mode</button>
 
 <h1>Welcome to Kamal's PHP Practice</h1>
 <p>Select a topic to view:</p>
@@ -145,20 +136,19 @@ if (isset($_GET['file']) && file_exists($_GET['file'])) {
 </footer>
 
 <script>
-    function toggleMode() {
-        document.body.classList.toggle("dark");
-        localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
-    }
+    // Toggle dark/light mode
+    const toggleBtn = document.getElementById('toggle-mode');
+    const body = document.body;
+    const currentMode = localStorage.getItem('mode');
+    if (currentMode === 'dark') body.classList.add('dark');
 
-    // Load saved theme
-    window.onload = () => {
-        if (localStorage.getItem("theme") === "dark") {
-            document.body.classList.add("dark");
-        }
-    };
+    toggleBtn.addEventListener('click', () => {
+        body.classList.toggle('dark');
+        localStorage.setItem('mode', body.classList.contains('dark') ? 'dark' : 'light');
+    });
 
+    // Scroll to output if file selected
     <?php if (isset($_GET['file'])): ?>
-    // Auto-scroll to output
     document.getElementById("output-section").scrollIntoView({ behavior: "smooth" });
     <?php endif; ?>
 </script>
