@@ -100,4 +100,9 @@ if (isset($_GET['file']) && file_exists($_GET['file'])) {
 <?php if (isset($_GET['file'])): ?>
 <script>
     // Scroll to output section
-    document.getElementById("output
+    document.getElementById("output-section").scrollIntoView({ behavior: "smooth" });
+</script>
+<?php endif; ?>
+
+</body>
+</html>
