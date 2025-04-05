@@ -14,7 +14,7 @@
             color: #333;
         }
         table {
-            margin: 0 auto;
+            margin: 0 auto 30px auto;
             border-collapse: collapse;
             width: 80%;
             background: white;
@@ -33,14 +33,20 @@
         a:hover {
             color: #0056b3;
         }
-        .code-output {
+        .split-view {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        .panel {
             background: white;
             border-radius: 8px;
-            margin: 30px auto;
             padding: 20px;
-            max-width: 900px;
-            text-align: left;
+            width: 45%;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: left;
         }
         pre {
             background: #eee;
@@ -66,7 +72,7 @@
     </tr>
     <?php
     $files = glob("Q*.php");
-    natcasesort($files); // Sort Q1-Q100 correctly
+    natcasesort($files);
     $i = 1;
     foreach ($files as $file) {
         $display = str_replace(["Q", "_", ".php"], ["Q", " ", ""], $file);
@@ -79,11 +85,9 @@
 <?php
 if (isset($_GET['file']) && file_exists($_GET['file'])) {
     $filename = $_GET['file'];
-    echo "<div class='code-output'>";
-    echo "<h2>Code: $filename</h2>";
-    echo "<pre>" . htmlspecialchars(file_get_contents($filename)) . "</pre>";
-    echo "<h2>Output:</h2>";
-    echo "<div>";
+    echo "<div class='split-view'>";
+    echo "<div class='panel'><h2>Code: $filename</h2><pre>" . htmlspecialchars(file_get_contents($filename)) . "</pre></div>";
+    echo "<div class='panel'><h2>Output:</h2>";
     include($filename);
     echo "</div></div>";
 }
