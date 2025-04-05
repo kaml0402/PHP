@@ -148,11 +148,13 @@
 <body>
 
 <div class="toggle-switch">
+    <span>Dark Mode</span>
     <label class="switch">
         <input type="checkbox" id="modeToggle">
         <span class="slider"></span>
     </label>
 </div>
+
 
 <h1>Welcome to Kamal's PHP Practice</h1>
 <p>Select a topic to view:</p>
