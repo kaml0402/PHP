@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Kamal's PHP Practice</title>
-    <link rel="icon" type="image/png" href="php page favicon.png">
+    <link rel="icon" type="image/png" href="favicon.png">
     <style>
         body {
             font-family: Arial, sans-serif;
