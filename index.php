@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Kamal's PHP Practice</title>
+    <link rel="icon" type="image/png" href="php page favicon.png">
     <style>
         body {
             font-family: Arial, sans-serif;
             background: #f0f0f0;
             padding: 40px;
             text-align: center;
-            transition: background 0.3s, color 0.3s;
         }
         h1 {
             color: #333;
@@ -59,46 +59,9 @@
             color: gray;
             font-size: 14px;
         }
-        #toggle-mode {
-            position: fixed;
-            top: 15px;
-            right: 15px;
-            background: #007BFF;
-            color: white;
-            border: none;
-            padding: 10px 14px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        #toggle-mode:hover {
-            background: #0056b3;
-        }
-
-        /* Dark Mode */
-        body.dark {
-            background: #121212;
-            color: #f0f0f0;
-        }
-        body.dark table,
-        body.dark .panel {
-            background: #1e1e1e;
-            color: #f0f0f0;
-        }
-        body.dark pre {
-            background: #2a2a2a;
-        }
-        body.dark a {
-            color: #66B2FF;
-        }
-        body.dark a:hover {
-            color: #99ccff;
-        }
     </style>
 </head>
 <body>
-
-<button id="toggle-mode">🌗 Toggle Dark Mode</button>
 
 <h1>Welcome to Kamal's PHP Practice</h1>
 <p>Select a topic to view:</p>
@@ -135,23 +98,11 @@ if (isset($_GET['file']) && file_exists($_GET['file'])) {
     Made with ❤️ by Kamal Mittal | <a href="https://github.com/kaml0402" target="_blank">My GitHub</a>
 </footer>
 
+<?php if (isset($_GET['file'])): ?>
 <script>
-    // Toggle dark/light mode
-    const toggleBtn = document.getElementById('toggle-mode');
-    const body = document.body;
-    const currentMode = localStorage.getItem('mode');
-    if (currentMode === 'dark') body.classList.add('dark');
-
-    toggleBtn.addEventListener('click', () => {
-        body.classList.toggle('dark');
-        localStorage.setItem('mode', body.classList.contains('dark') ? 'dark' : 'light');
-    });
-
-    // Scroll to output if file selected
-    <?php if (isset($_GET['file'])): ?>
     document.getElementById("output-section").scrollIntoView({ behavior: "smooth" });
-    <?php endif; ?>
 </script>
+<?php endif; ?>
 
 </body>
 </html>
