@@ -4,36 +4,59 @@
     <meta charset="UTF-8">
     <title>Kamal's PHP Practice</title>
     <style>
+        :root {
+            --bg: #f0f0f0;
+            --text: #333;
+            --panel-bg: white;
+            --link: #007BFF;
+            --link-hover: #0056b3;
+        }
+
+        body.dark {
+            --bg: #1e1e1e;
+            --text: #eee;
+            --panel-bg: #2c2c2c;
+            --link: #66aaff;
+            --link-hover: #3399ff;
+        }
+
         body {
             font-family: Arial, sans-serif;
-            background: #f0f0f0;
+            background: var(--bg);
+            color: var(--text);
             padding: 40px;
             text-align: center;
+            transition: background 0.3s, color 0.3s;
         }
+
         h1 {
-            color: #333;
+            color: var(--text);
         }
+
         table {
             margin: 0 auto 30px auto;
             border-collapse: collapse;
-            width: 90%;
-            max-width: 1000px;
-            background: white;
+            width: 80%;
+            background: var(--panel-bg);
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
+
         th, td {
             padding: 12px 20px;
             border-bottom: 1px solid #ddd;
             text-align: left;
         }
+
         a {
             text-decoration: none;
-            color: #007BFF;
+            color: var(--link);
             transition: 0.3s;
         }
+
         a:hover {
-            color: #0056b3;
+            color: var(--link-hover);
         }
+
         .split-view {
             display: flex;
             justify-content: center;
@@ -41,40 +64,50 @@
             margin-top: 30px;
             flex-wrap: wrap;
         }
+
         .panel {
-            background: white;
+            background: var(--panel-bg);
             border-radius: 8px;
             padding: 20px;
             width: 45%;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             text-align: left;
         }
+
         pre {
             background: #eee;
             padding: 10px;
             overflow-x: auto;
-            max-height: 500px;
         }
+
+        .dark pre {
+            background: #333;
+            color: #eee;
+        }
+
         footer {
-            margin-top: 60px;
+            margin-top: 40px;
+            color: gray;
             font-size: 14px;
-            color: #777;
         }
-        footer a {
-            color: #007BFF;
-            text-decoration: none;
-        }
-        footer a:hover {
-            color: #0056b3;
-        }
-        @media (max-width: 768px) {
-            .panel {
-                width: 100%;
-            }
+
+        .toggle-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            padding: 8px 14px;
+            background: var(--panel-bg);
+            color: var(--text);
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
         }
     </style>
 </head>
 <body>
+
+<button class="toggle-btn" onclick="toggleMode()">🌗 Toggle Dark Mode</button>
 
 <h1>Welcome to Kamal's PHP Practice</h1>
 <p>Select a topic to view:</p>
@@ -108,16 +141,27 @@ if (isset($_GET['file']) && file_exists($_GET['file'])) {
 ?>
 
 <footer>
-    Made with ❤️ by Kamal Mittal | 
-    <a href="https://github.com/kaml0402" target="_blank">My GitHub</a>
+    Made with ❤️ by Kamal Mittal | <a href="https://github.com/kaml0402" target="_blank">My GitHub</a>
 </footer>
 
-<?php if (isset($_GET['file'])): ?>
 <script>
-    // Auto-scroll to output section
+    function toggleMode() {
+        document.body.classList.toggle("dark");
+        localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
+    }
+
+    // Load saved theme
+    window.onload = () => {
+        if (localStorage.getItem("theme") === "dark") {
+            document.body.classList.add("dark");
+        }
+    };
+
+    <?php if (isset($_GET['file'])): ?>
+    // Auto-scroll to output
     document.getElementById("output-section").scrollIntoView({ behavior: "smooth" });
+    <?php endif; ?>
 </script>
-<?php endif; ?>
 
 </body>
 </html>
