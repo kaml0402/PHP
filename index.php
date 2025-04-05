@@ -10,10 +10,13 @@
             background: #f0f0f0;
             padding: 40px;
             text-align: center;
+            transition: background 0.4s, color 0.4s;
         }
+
         h1 {
             color: #333;
         }
+
         table {
             margin: 0 auto 30px auto;
             border-collapse: collapse;
@@ -21,19 +24,23 @@
             background: white;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
+
         th, td {
             padding: 12px 20px;
             border-bottom: 1px solid #ddd;
             text-align: left;
         }
+
         a {
             text-decoration: none;
             color: #007BFF;
             transition: 0.3s;
         }
+
         a:hover {
             color: #0056b3;
         }
+
         .split-view {
             display: flex;
             justify-content: center;
@@ -41,6 +48,7 @@
             margin-top: 30px;
             flex-wrap: wrap;
         }
+
         .panel {
             background: white;
             border-radius: 8px;
@@ -49,19 +57,102 @@
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             text-align: left;
         }
+
         pre {
             background: #eee;
             padding: 10px;
             overflow-x: auto;
         }
+
         footer {
             margin-top: 40px;
             color: gray;
             font-size: 14px;
         }
+
+        /* Dark Mode */
+        body.dark-mode {
+            background-color: #121212;
+            color: #eee;
+        }
+
+        body.dark-mode a {
+            color: #66b2ff;
+        }
+
+        body.dark-mode table,
+        body.dark-mode .panel {
+            background: #1e1e1e;
+        }
+
+        body.dark-mode pre {
+            background: #2e2e2e;
+        }
+
+        /* Toggle Switch */
+        .toggle-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
     </style>
 </head>
 <body>
+
+<div class="toggle-switch">
+    <label class="switch">
+        <input type="checkbox" id="modeToggle">
+        <span class="slider"></span>
+    </label>
+</div>
 
 <h1>Welcome to Kamal's PHP Practice</h1>
 <p>Select a topic to view:</p>
@@ -103,6 +194,27 @@ if (isset($_GET['file']) && file_exists($_GET['file'])) {
     document.getElementById("output-section").scrollIntoView({ behavior: "smooth" });
 </script>
 <?php endif; ?>
+
+<script>
+    const toggle = document.getElementById('modeToggle');
+    const body = document.body;
+
+    // Load saved mode
+    if (localStorage.getItem("theme") === "dark") {
+        toggle.checked = true;
+        body.classList.add("dark-mode");
+    }
+
+    toggle.addEventListener('change', () => {
+        if (toggle.checked) {
+            body.classList.add("dark-mode");
+            localStorage.setItem("theme", "dark");
+        } else {
+            body.classList.remove("dark-mode");
+            localStorage.setItem("theme", "light");
+        }
+    });
+</script>
 
 </body>
 </html>
