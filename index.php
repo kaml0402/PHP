@@ -179,13 +179,45 @@
 <?php
 if (isset($_GET['file']) && file_exists($_GET['file'])) {
     $filename = $_GET['file'];
+    $code = file_get_contents($filename);
+
+    echo <<<STYLE
+    <style>
+        .warning-box {
+            background: #fff3cd;
+            color: #856404;
+            padding: 15px;
+            border: 1px solid #ffeeba;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            animation: slideIn 0.5s ease-out;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+STYLE;
+
     echo "<div class='split-view' id='output-section'>";
-    echo "<div class='panel'><h2>Code: $filename</h2><pre>" . htmlspecialchars(file_get_contents($filename)) . "</pre></div>";
+
+    echo "<div class='panel'><h2>Code: $filename</h2><pre>" . htmlspecialchars($code) . "</pre></div>";
+
     echo "<div class='panel'><h2>Output:</h2>";
-    include($filename);
+
+    if (stripos($code, 'mysqli') !== false || stripos($code, 'CREATE DATABASE') !== false || stripos($code, 'mysql_connect') !== false) {
+        echo "<div class='warning-box'>
+        ⚠️ This program will throw a fatal error on this website.<br>
+        Please try this code on your <strong>local server</strong> using <strong>XAMPP</strong> or <strong>WAMP</strong>.
+        </div>";
+    } else {
+        include($filename);
+    }
+
     echo "</div></div>";
 }
 ?>
+
 
 <footer>
     Made with ❤️ by Kamal Mittal | <a href="https://github.com/kaml0402" target="_blank">My GitHub</a>
