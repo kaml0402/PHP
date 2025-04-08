@@ -143,21 +143,31 @@
         input:checked + .slider:before {
             transform: translateX(26px);
         }
+
+        /* Search Bar */
+        #searchInput {
+            padding: 10px;
+            width: 50%;
+            margin: 20px auto;
+            display: block;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
 
 <div class="toggle-switch">
-    <span>Dark Mode</span>
     <label class="switch">
         <input type="checkbox" id="modeToggle">
         <span class="slider"></span>
     </label>
 </div>
 
-
 <h1>Welcome to Kamal's PHP Practice</h1>
 <p>Select a topic to view:</p>
+
+<input type="text" id="searchInput" placeholder="Search by topic...">
 
 <table>
     <tr>
@@ -179,45 +189,13 @@
 <?php
 if (isset($_GET['file']) && file_exists($_GET['file'])) {
     $filename = $_GET['file'];
-    $code = file_get_contents($filename);
-
-    echo <<<STYLE
-    <style>
-        .warning-box {
-            background: #fff3cd;
-            color: #856404;
-            padding: 15px;
-            border: 1px solid #ffeeba;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            animation: slideIn 0.5s ease-out;
-        }
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
-STYLE;
-
     echo "<div class='split-view' id='output-section'>";
-
-    echo "<div class='panel'><h2>Code: $filename</h2><pre>" . htmlspecialchars($code) . "</pre></div>";
-
+    echo "<div class='panel'><h2>Code: $filename</h2><pre>" . htmlspecialchars(file_get_contents($filename)) . "</pre></div>";
     echo "<div class='panel'><h2>Output:</h2>";
-
-    if (stripos($code, 'mysqli') !== false || stripos($code, 'CREATE DATABASE') !== false || stripos($code, 'mysql_connect') !== false) {
-        echo "<div class='warning-box'>
-        ⚠️ This program will throw a fatal error on this website.<br>
-        Please try this code on your <strong>local server</strong> using <strong>XAMPP</strong> or <strong>WAMP</strong>.
-        </div>";
-    } else {
-        include($filename);
-    }
-
+    include($filename);
     echo "</div></div>";
 }
 ?>
-
 
 <footer>
     Made with ❤️ by Kamal Mittal | <a href="https://github.com/kaml0402" target="_blank">My GitHub</a>
@@ -230,10 +208,10 @@ STYLE;
 <?php endif; ?>
 
 <script>
+    // Dark Mode Toggle
     const toggle = document.getElementById('modeToggle');
     const body = document.body;
 
-    // Load saved mode
     if (localStorage.getItem("theme") === "dark") {
         toggle.checked = true;
         body.classList.add("dark-mode");
@@ -247,6 +225,18 @@ STYLE;
             body.classList.remove("dark-mode");
             localStorage.setItem("theme", "light");
         }
+    });
+
+    // Search Filter
+    const searchInput = document.getElementById("searchInput");
+    searchInput.addEventListener("keyup", function () {
+        const filter = searchInput.value.toLowerCase();
+        const rows = document.querySelectorAll("table tr");
+        rows.forEach((row, index) => {
+            if (index === 0) return;
+            const text = row.innerText.toLowerCase();
+            row.style.display = text.includes(filter) ? "" : "none";
+        });
     });
 </script>
 
