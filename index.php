@@ -18,9 +18,7 @@ ini_set("display_errors", 1);
             transition: background 0.4s, color 0.4s;
         }
 
-        h1 {
-            color: #333;
-        }
+        h1 { color: #333; }
 
         table {
             margin: 0 auto 30px auto;
@@ -42,9 +40,7 @@ ini_set("display_errors", 1);
             transition: 0.3s;
         }
 
-        a:hover {
-            color: #0056b3;
-        }
+        a:hover { color: #0056b3; }
 
         .split-view {
             display: flex;
@@ -91,20 +87,13 @@ ini_set("display_errors", 1);
             color: #eee;
         }
 
-        body.dark-mode a {
-            color: #66b2ff;
-        }
+        body.dark-mode a { color: #66b2ff; }
 
         body.dark-mode table,
-        body.dark-mode .panel {
-            background: #1e1e1e;
-        }
+        body.dark-mode .panel { background: #1e1e1e; }
 
-        body.dark-mode pre {
-            background: #2e2e2e;
-        }
+        body.dark-mode pre { background: #2e2e2e; }
 
-        /* Toggle Switch */
         .toggle-switch {
             position: absolute;
             top: 20px;
@@ -151,15 +140,9 @@ ini_set("display_errors", 1);
             border-radius: 50%;
         }
 
-        input:checked + .slider {
-            background-color: #2196F3;
-        }
+        input:checked + .slider { background-color: #2196F3; }
+        input:checked + .slider:before { transform: translateX(26px); }
 
-        input:checked + .slider:before {
-            transform: translateX(26px);
-        }
-
-        /* Search Bar */
         #searchInput {
             padding: 10px;
             width: 50%;
@@ -204,6 +187,12 @@ ini_set("display_errors", 1);
 <?php
 if (isset($_GET['file'])) {
     $filename = basename($_GET['file']);
+
+    // ✅ Auto add .php if not present
+    if (pathinfo($filename, PATHINFO_EXTENSION) !== 'php') {
+        $filename .= '.php';
+    }
+
     $filepath = __DIR__ . '/' . $filename;
 
     if (file_exists($filepath)) {
@@ -227,6 +216,7 @@ if (isset($_GET['file'])) {
             echo "<p style='color:red;'>Error: " . $e->getMessage() . "</p>";
         }
         ob_end_flush();
+
         echo "</div></div>";
     } else {
         echo "<div class='alert'>🚫 File not found: <strong>$filename</strong></div>";
@@ -245,7 +235,6 @@ if (isset($_GET['file'])) {
 <?php endif; ?>
 
 <script>
-    // Dark Mode Toggle
     const toggle = document.getElementById('modeToggle');
     const body = document.body;
 
@@ -264,7 +253,6 @@ if (isset($_GET['file'])) {
         }
     });
 
-    // Search Filter
     const searchInput = document.getElementById("searchInput");
     searchInput.addEventListener("keyup", function () {
         const filter = searchInput.value.toLowerCase();
