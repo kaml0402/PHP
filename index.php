@@ -81,14 +81,35 @@ ini_set("display_errors", 1);
         }
 
         /* Dark Mode */
-        body.dark-mode h1 {
-    color: #ffffff;
-    text-shadow: 0 0 10px #915eff, 0 0 20px #ff00cc;
+        /* Dark Mode */
+body.dark-mode {
+    background-color: #121212;  /* Dark background for whole page */
+    color: #ddd;                /* Light text color */
 }
 
-        body.dark-mode a { color: #66b2ff; }
-        body.dark-mode table, body.dark-mode .panel { background: #1e1e1e; }
-        body.dark-mode pre { background: #2e2e2e; }
+body.dark-mode h1 {
+    color: #d0bcff; /* Softer purple */
+    background-color: transparent; /* Remove white bg */
+    text-shadow: 0 0 8px #b084fc, 0 0 20px #a85cff;
+    padding: 10px 0;
+    border-radius: 5px;
+}
+
+body.dark-mode a {
+    color: #80aaff;
+}
+
+body.dark-mode table,
+body.dark-mode .panel {
+    background: #1e1e1e;
+    color: #ccc;
+}
+
+body.dark-mode pre {
+    background: #2e2e2e;
+    color: #eee;
+}
+
 
         /* Toggle Switch */
         .toggle-switch {
