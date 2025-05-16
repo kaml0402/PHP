@@ -137,8 +137,7 @@ ini_set("display_errors", 1);
         }
 
         /* Search Bar */
-        { 
-#searchInput{
+        #searchInput {
   border-radius: 10px;
   outline: 2px solid #FEBF00;
   border: 0;
@@ -147,13 +146,16 @@ ini_set("display_errors", 1);
   outline-offset: 3px;
   padding: 10px 1rem;
   transition: 0.25s;
+  width: 50%;
+  margin: 20px auto;
+  display: block;
 }
 
 #searchInput: focus {
   outline-offset: 5px;
-  background-color: #fff
+  background-color: #fff;
 }
-        }
+
         #backToTop {
     position: fixed;
     bottom: 30px;
