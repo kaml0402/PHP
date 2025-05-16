@@ -90,7 +90,7 @@ body.dark-mode {
 body.dark-mode h1 {
     color: #d0bcff; /* Softer purple */
     background-color: transparent; /* Remove white bg */
-    text-shadow: 0 0 8px #b084fc, 0 0 20px #a85cff;
+    text-shadow: none;
     padding: 10px 0;
     border-radius: 5px;
 }
