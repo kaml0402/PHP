@@ -16,7 +16,7 @@ ini_set("display_errors", 1);
   gtag('config', 'G-LKK3VTPXKX');
 </script>
     <meta charset="UTF-8">
-    <title>Kamal's PHP Practice</title>
+    <title>Kamal's PHP Code Practicer</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <style>
         body {
@@ -158,6 +158,13 @@ body.dark-mode pre {
             transform: translateX(26px);
         }
 
+        #modeLabel {
+    font-size: 20px;
+    margin-left: 10px;
+    transition: 0.3s;
+}
+
+
         /* Search Bar */
         /* Light Mode - Default */
 #searchInput {
@@ -226,9 +233,10 @@ body.dark-mode #searchInput:focus {
         <input type="checkbox" id="modeToggle">
         <span class="slider"></span>
     </label>
+    <span id="modeLabel">🌞</span> <!-- Default emoji for Light Mode -->
 </div>
 
-<h1>Welcome to Kamal's PHP Practice</h1>
+<h1>Welcome to Kamal's PHP Code Practicer</h1>
 <p>Select a topic to view:</p>
 
 <input type="text" id="searchInput" placeholder="Search by topic...">
@@ -296,24 +304,30 @@ if (isset($_GET['file'])) {
 <?php endif; ?>
 
 <script>
-    // Dark Mode Toggle
-    const toggle = document.getElementById('modeToggle');
-    const body = document.body;
+    // Dark Mode Toggle with Emoji
+const toggle = document.getElementById('modeToggle');
+const body = document.body;
+const modeLabel = document.getElementById('modeLabel'); // Emoji span
 
-    if (localStorage.getItem("theme") === "dark") {
-        toggle.checked = true;
+if (localStorage.getItem("theme") === "dark") {
+    toggle.checked = true;
+    body.classList.add("dark-mode");
+    modeLabel.textContent = "🌙";
+} else {
+    modeLabel.textContent = "🌞";
+}
+
+toggle.addEventListener('change', () => {
+    if (toggle.checked) {
         body.classList.add("dark-mode");
+        localStorage.setItem("theme", "dark");
+        modeLabel.textContent = "🌙";
+    } else {
+        body.classList.remove("dark-mode");
+        localStorage.setItem("theme", "light");
+        modeLabel.textContent = "🌞";
     }
-
-    toggle.addEventListener('change', () => {
-        if (toggle.checked) {
-            body.classList.add("dark-mode");
-            localStorage.setItem("theme", "dark");
-        } else {
-            body.classList.remove("dark-mode");
-            localStorage.setItem("theme", "light");
-        }
-    });
+});
 
     // Search Filter
     const searchInput = document.getElementById("searchInput");
