@@ -81,10 +81,11 @@ ini_set("display_errors", 1);
         }
 
         /* Dark Mode */
-        body.dark-mode {
-            background-color: #121212;
-            color: #eee;
-        }
+        body.dark-mode h1 {
+    color: #ffffff;
+    text-shadow: 0 0 10px #915eff, 0 0 20px #ff00cc;
+}
+
         body.dark-mode a { color: #66b2ff; }
         body.dark-mode table, body.dark-mode .panel { background: #1e1e1e; }
         body.dark-mode pre { background: #2e2e2e; }
