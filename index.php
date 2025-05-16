@@ -137,12 +137,11 @@ ini_set("display_errors", 1);
         }
 
         /* Search Bar */
-        #searchInput {
-    background-color: #0f0f0f;
-    border: none;
-    outline: 2px solid #915eff;
-    outline-offset: 3px;
-    color: white;
+        /* Light Mode - Default */
+#searchInput {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    color: #333;
     padding: 10px 1rem;
     border-radius: 12px;
     font-size: 16px;
@@ -150,13 +149,31 @@ ini_set("display_errors", 1);
     margin: 20px auto;
     display: block;
     transition: 0.3s ease-in-out;
+    box-shadow: none;
+}
+
+#searchInput:focus {
+    outline: none;
+    border-color: #915eff;
+    box-shadow: 0 0 5px #915eff;
+    background-color: #f9f9f9;
+}
+
+/* Dark Mode overrides */
+body.dark-mode #searchInput {
+    background-color: #0f0f0f;
+    border: none;
+    outline: 2px solid #915eff;
+    outline-offset: 3px;
+    color: white;
     box-shadow: 0 0 10px #915eff, 0 0 20px #ff00cc;
 }
 
-#searchInput: focus {
-    outline-offset: 5px;
+body.dark-mode #searchInput:focus {
     background-color: #1a1a1a;
+    outline-offset: 5px;
 }
+
 
         #backToTop {
     position: fixed;
