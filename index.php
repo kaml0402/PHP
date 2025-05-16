@@ -138,22 +138,24 @@ ini_set("display_errors", 1);
 
         /* Search Bar */
         #searchInput {
-  border-radius: 10px;
-  outline: 2px solid #FEBF00;
-  border: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  background-color: #e2e2e2;
-  outline-offset: 3px;
-  padding: 10px 1rem;
-  transition: 0.25s;
-  width: 50%;
-  margin: 20px auto;
-  display: block;
+    background-color: #0f0f0f;
+    border: none;
+    outline: 2px solid #915eff;
+    outline-offset: 3px;
+    color: white;
+    padding: 10px 1rem;
+    border-radius: 12px;
+    font-size: 16px;
+    width: 50%;
+    margin: 20px auto;
+    display: block;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0 0 10px #915eff, 0 0 20px #ff00cc;
 }
 
 #searchInput: focus {
-  outline-offset: 5px;
-  background-color: #fff;
+    outline-offset: 5px;
+    background-color: #1a1a1a;
 }
 
         #backToTop {
